@@ -24,7 +24,11 @@ jobs:
       - name: Rodar testes
         run: |
           echo "Simulando testes..."
-          php -l index.php || echo "index.php não encontrado"
+          if [ -f index.php ]; then
+                php -l index.php
+              else
+                echo "index.php não encontrado. Pulando testes de sintaxe."
+              fi
 
       - name: Build do projeto
         run: |
